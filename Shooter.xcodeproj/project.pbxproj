@@ -9,25 +9,25 @@
 /* Begin PBXBuildFile section */
 		AED3C6D12091209300A3DD67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED3C6D02091209300A3DD67 /* AppDelegate.swift */; };
 		AED3C6D32091209300A3DD67 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = AED3C6D22091209300A3DD67 /* GameScene.sks */; };
-		AED3C6D52091209300A3DD67 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = AED3C6D42091209300A3DD67 /* Actions.sks */; };
 		AED3C6D72091209300A3DD67 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED3C6D62091209300A3DD67 /* GameScene.swift */; };
 		AED3C6D92091209300A3DD67 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED3C6D82091209300A3DD67 /* GameViewController.swift */; };
 		AED3C6DC2091209300A3DD67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AED3C6DA2091209300A3DD67 /* Main.storyboard */; };
 		AED3C6DE2091209300A3DD67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AED3C6DD2091209300A3DD67 /* Assets.xcassets */; };
 		AED3C6E12091209300A3DD67 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AED3C6DF2091209300A3DD67 /* LaunchScreen.storyboard */; };
+		AED3C6E92091228000A3DD67 /* boost2.png in Resources */ = {isa = PBXBuildFile; fileRef = AED3C6E82091227F00A3DD67 /* boost2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AED3C6CD2091209300A3DD67 /* Shooter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shooter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AED3C6D02091209300A3DD67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AED3C6D22091209300A3DD67 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		AED3C6D42091209300A3DD67 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		AED3C6D62091209300A3DD67 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		AED3C6D82091209300A3DD67 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		AED3C6DB2091209300A3DD67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AED3C6DD2091209300A3DD67 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AED3C6E02091209300A3DD67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AED3C6E22091209300A3DD67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AED3C6E82091227F00A3DD67 /* boost2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boost2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,11 +62,11 @@
 			children = (
 				AED3C6D02091209300A3DD67 /* AppDelegate.swift */,
 				AED3C6D22091209300A3DD67 /* GameScene.sks */,
-				AED3C6D42091209300A3DD67 /* Actions.sks */,
 				AED3C6D62091209300A3DD67 /* GameScene.swift */,
 				AED3C6D82091209300A3DD67 /* GameViewController.swift */,
 				AED3C6DA2091209300A3DD67 /* Main.storyboard */,
 				AED3C6DD2091209300A3DD67 /* Assets.xcassets */,
+				AED3C6E82091227F00A3DD67 /* boost2.png */,
 				AED3C6DF2091209300A3DD67 /* LaunchScreen.storyboard */,
 				AED3C6E22091209300A3DD67 /* Info.plist */,
 			);
@@ -132,11 +132,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AED3C6E92091228000A3DD67 /* boost2.png in Resources */,
 				AED3C6DC2091209300A3DD67 /* Main.storyboard in Resources */,
 				AED3C6D32091209300A3DD67 /* GameScene.sks in Resources */,
 				AED3C6DE2091209300A3DD67 /* Assets.xcassets in Resources */,
 				AED3C6E12091209300A3DD67 /* LaunchScreen.storyboard in Resources */,
-				AED3C6D52091209300A3DD67 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

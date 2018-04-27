@@ -11,76 +11,88 @@ import GameplayKit
 
 class GameScene: SKScene {
     
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
+    let Mainball = SKSpriteNode(imageNamed: "Ball")
+    var EnemyTimer = Timer()
+    
     
     override func didMove(to view: SKView) {
-        
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
-        }
-        
-        // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
-        
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 2.5
-            
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                              SKAction.fadeOut(withDuration: 0.5),
-                                              SKAction.removeFromParent()]))
-        }
-    }
-    
-    
-    func touchDown(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.green
-            self.addChild(n)
-        }
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.blue
-            self.addChild(n)
-        }
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.red
-            self.addChild(n)
-        }
+        backgroundColor = UIColor.white
+        Mainball.size = CGSize (width: 100, height: 100)
+        //lo pongo enmedio
+        Mainball.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
+        Mainball.color = UIColor(red: 0.2,green: 0.2, blue: 0.2, alpha: 1.0)
+        Mainball.colorBlendFactor = 1.0
+        self.addChild(Mainball)
+        EnemyTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: Selector(("Enemies")), userInfo: nil, repeats: true)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
+        for touch in (touches){
+            let location = touch.location(in: self)
+            
+            let SmallBall = SKSpriteNode(imageNamed: "Ball")
+            SmallBall.position = (Mainball.position)
+            SmallBall.size = CGSize(width: 30, height: 30)
+            SmallBall.physicsBody = SKPhysicsBody(circleOfRadius: SmallBall.size.width / 2)
+            SmallBall.physicsBody?.affectedByGravity = true
+            SmallBall.color = UIColor(red: 0.1, green: 0.85, blue: 0.95, alpha: 1.0)
+            SmallBall.colorBlendFactor = 1.0
+
+            self.addChild(SmallBall)
+            
+            var dx = CGFloat (location.x - (Mainball.position.x))
+            var dy = CGFloat (location.y-(Mainball.position.y))
+            
+            let magnitude = sqrt(dx*dx+dy*dy)
+            dx /= magnitude
+            dy /= magnitude
+            let vector = CGVector(dx:16.0 * dy,dy: 16.0 * dy)
+            SmallBall.physicsBody?.applyImpulse(vector)
         }
+    }
+    func Enemies(){
+        let Enemy = SKSpriteNode(imageNamed: "Ball")
+        Enemy.size = CGSize(width: 20, height: 20)
+        Enemy.color = UIColor (red: 0.9, green: 0.1, blue: 0.1, alpha: 1.0)
+        Enemy.colorBlendFactor = 1.0
+        let RandomPosNmbr = arc4random() % 4
         
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
+        switch RandomPosNmbr {
+        case 0:
+            Enemy.position.x = 0
+            var PositionY = arc4random_uniform(UInt32(frame.size.height))
+            Enemy.position.y = CGFloat (PositionY)
+            self.addChild(Enemy)
+        break
+        
+        case 1:
+            Enemy.position.y = 0
+            var PositionX = arc4random_uniform(UInt32(frame.size.height))
+            Enemy.position.x = CGFloat (PositionX)
+            self.addChild(Enemy)
+        break
+        case 2:
+            Enemy.position.y = frame.size.height
+            var PositionX = arc4random_uniform(UInt32(frame.size.height))
+            Enemy.position.x = CGFloat (PositionX)
+            self.addChild(Enemy)
+            break
+        case 3:
+            Enemy.position.x = frame.size.width
+            var PositionY = arc4random_uniform(UInt32(frame.size.height))
+            Enemy.position.y = CGFloat (PositionY)
+            self.addChild(Enemy)
+            
+        break
+        
+        default:
+            break}
+            
+            Enemy.run(SKAction.move(to: Mainball.position, duration: 3))
+            
+        
     }
     
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
     
     
     override func update(_ currentTime: TimeInterval) {
